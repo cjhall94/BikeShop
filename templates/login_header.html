@@ -1,0 +1,84 @@
+<nav class="navbar navbar-inverse" style="border-radius:0; margin-bottom:0;">
+	<div class="navbar-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="{{ url_for('mainIndex') }}" target="_self" class="navbar-brand">LISTER</a>
+		</div>
+		<div class="collapse navbar-collapse" id="mainNavBar" ng-controller="ChatController">
+			<ul class="nav navbar-nav">
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown" id="dropDown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong id="menu"> Sign in</strong> <span class="caret"></span></a>
+					<ul id="login-dp" class="dropdown-menu" id="start">
+						<li id="one">
+							 <div class="row">
+									<div class="col-md-12">
+										 <form class="form" method="post" action="/login" accept-charset="UTF-8" id="login-nav">
+												<div class="form-group">
+													 <label class="sr-only" for="exampleInputEmail2">Email Address</label>
+													 <input type="email" class="form-control" id="email" placeholder="Email Address" name="email" ng-model="email">
+												</div>
+												<div class="form-group">
+													 <label class="sr-only" for="exampleInputPassword2">Password</label>
+													 <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="password">
+		                                             <div class="help-block text-right"><a href="">Forget password?</a></div>
+												</div>
+												<div class="form-group">
+													 <button type="submit" class="btn btn-primary btn-block" ng-disabled="!email || !password">Sign in</button>
+												</div>
+										 </form>
+									</div>
+									<div class="bottom text-center">
+										<p style="color:black;">New here? <a target="_self" id="regClick"><b>Sign Up</b></a></p>
+									</div>
+							 </div>
+						</li>
+						<li id="two">
+							 <div class="row">
+									<div class="col-md-12">
+										
+										 <div id="alert"></div>
+										 
+										 <form class="form" role="form" method="post" target="_self" ng-submit="register()" accept-charset="UTF-8" id="login-nav">
+												<div class="form-group">
+													 <label class="sr-only" for="exampleInputEmail2">Email address</label>
+													 <input type="email" class="form-control" id="email2" placeholder="Email Address" name="email" ng-model="remail">
+												</div>
+												<div class="form-group">
+													 <label class="sr-only" for="exampleInputEmail2">First Name</label>
+													 <input type="text" class="form-control" id="firstName" placeholder="First Name" name="firstName" ng-model="firstname">
+												</div>
+												<div class="form-group">
+													 <label class="sr-only" for="exampleInputEmail2">Last Name</label>
+													 <input type="text" class="form-control" id="lastName" placeholder="Last Name" name="lastName" ng-model="lastname">
+												</div>
+												<div class="form-group">
+													 <label class="sr-only" for="exampleInputPassword2">Password</label>
+													 <input type="password" class="form-control" id="password2" name="password" placeholder="Password" ng-model="rpassword">
+												</div>
+												<div class="form-group">
+													 <label class="sr-only" for="exampleInputPassword2">Confirm Password</label>
+													 <input type="password" class="form-control" id="confirmpassword2" name="confirmpassword" placeholder="Confirm Password" ng-model="cpassword">
+												</div>
+												<div class="form-group">
+													 <button type="submit" class="btn btn-primary btn-block" ng-disabled="!remail || !firstname || !lastname || !rpassword || !cpassword || rpassword != cpassword">Register</button>
+												</div>
+										 </form>
+									</div>
+									<div class="bottom text-center">
+										<p style="color:black;">Have an account? <a target="_self" id="logClick"><b>Login</b></a></p>
+									</div>
+							 </div>
+						</li>
+					</ul>
+		        </li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="alert alert-info" style="margin-bottom:0;"></div>

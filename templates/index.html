@@ -1,10 +1,25 @@
 {% extends "layout.html" %}
 
 {% block content %}
- <h1>Welcome to the UMW R/C club</h1>
-        <p>Our current club president Chris Romo</p>
-        <p>The next build your own workshop is 20 January at 2pm where we will be building FliteTest's Easy Flyer. The cost is $15</p>
+ <h1>Welcome to a website about food and stuff!</h1>
+        <p>Thanks for visiting and be sure to look around! We have some great recipies for everyone to look at!</p>
+        <p>Check out our spotlight recipe! {{spotlight}}!</p>
 
-        <p>Join us on the quad every Wednesday night at 6pm to fly quadcopters and R/C planes</p>
+        <p>The next cooking workshop is {{project.date}} at {{project.time}}! We will be making {{project.dish}}! The cost to attend is {{project.cost}}! We cant wait to see you there!</p>
+        {% if classC %}
+        <p><b>Class is still on for this Friday</b></p>
+        {% else %}
+        <p><b>Class is Canceled this Friday</b></p>
+        {% endif %}
+        
+        <h1>Featured Videos</h1>
+        {% for post in posts %}
+        <h2>{{post.title}}</h2>
+        <iframe width="620" height="480"
+           src="https://youtube.com/embed/{{post.vidLink}}"></iframe>
+        <p>{{post.description}}</p>
+        {% endfor %}
+        
+        
+        <p>Be sure to join us every Friday night at 6pm to learn how to cook from the professionals!</p>
 {% endblock %}
-

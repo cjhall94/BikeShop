@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>UMW RC Club</title>
+  <title>Gusty's Bike Shop</title>
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -17,17 +17,16 @@
       <div id="logo">
         <div id="logo_text">
           <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="index.html">UMW<span class="logo_colour"> RC Club</span></a></h1>
-          <h2>The World of Flight</h2>
+          <h1><a href="/">Gusty's<span class="logo_colour"> Bike Shop</span></a></h1>
+          <h2>A Community for Bike Lovers</h2>
         </div>
       </div>
       <nav>
         <ul class="sf-menu" id="nav">
-          <li class="selected"><a href="index.html">Home</a></li>
-          <li><a href="examples.html">Examples</a></li>
-          <li><a href="page.html">A Page</a></li>
-          <li><a href="another_page.html">Another Page</a></li>
-          <li><a href="#">Example Drop Down</a>
+          <li><a href="/">Home</a></li>
+          <li><a href="/breakfest">What's New</a></li>
+          <!--<li><a href="/lunch">Shop</a></li> -->
+          <li><a href="/lunch">Shop</a>
             <ul>
               <li><a href="#">Drop Down One</a></li>
               <li><a href="#">Drop Down Two</a>
@@ -43,14 +42,53 @@
               <li><a href="#">Drop Down Four</a></li>
               <li><a href="#">Drop Down Five</a></li>
             </ul>
+          <li><a href="/dinner">Blog</a></li>
+          <li><a href="/r2">Contact Us</a>
+          <li><a href="/music3">Sign In</a>
+            <ul>
+              <li id="one">
+							 <div class="row">
+									<div class="col-md-12 text-align: center">
+										 <form class="form" method="post" action="/login" accept-charset="UTF-8" id="login-nav">
+										   <br>
+												<div class="form-group">
+													 <label class="sr-only" for="exampleInputEmail2">Email Address</label>
+													 <input type="email" class="form-control" id="email" placeholder="Email Address" name="email" ng-model="email">
+												</div>
+												<br>
+												<div class="form-group">
+													 <label class="sr-only" for="exampleInputPassword2">Password</label>
+													 <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="password">
+		                                             <div class="help-block text-right"><a href="">Forget password?</a></div>
+												</div>
+												<div class="form-group">
+													 <button type="submit" class="btn btn-primary btn-block" ng-disabled="!email || !password">Sign in</button>
+												</div>
+										 </form>
+									</div>
+									<br>
+									<div class="bottom text-align: center">
+										<p style="color:black;">New here? <a target="_self" id="regClick"><b>Sign Up</b></a></p>
+									</div>
+							 </div>
+						</li>
+            </ul>
           </li>
-          <li><a href="contact.html">Contact Us</a></li>
+            <!--<ul>
+              <li><a href="#">Cakes</a></li>
+              <li><a href="#">Cookies</a>
+              </li>
+              <li><a href="#">Pies</a></li>
+              <li><a href="#">Icecream</a></li>
+              <li><a href="#">Candy</a></li>
+            </ul> -->
+          </li>
         </ul>
       </nav>
     </header>
   <div id="site_content">
       <ul id="images">
-        <li><img src="static/images/1.jpg" width="600" height="300" alt="seascape_one" /></li>
+        <li><img src="gustysbikeshop/Website/static/images/2.jpg" width="600" height="300" alt="seascape_one" /></li>
         <li><img src="static/images/2.jpg" width="600" height="300" alt="seascape_two" /></li>
         <li><img src="static/images/3.jpg" width="600" height="300" alt="seascape_three" /></li>
         <li><img src="static/images/4.jpg" width="600" height="300" alt="seascape_four" /></li>
@@ -59,13 +97,13 @@
       </ul>
        <div id="sidebar_container">
         <div class="sidebar">
-          <h3>Latest News</h3>
-          <h4>Don't do this at home</h4>
+          <h3>Whats New?!</h3>
+          <h4>REMEMBER TO ALWAYS WASH YOUR HANDS</h4>
           <h5>January 1st, 2016</h5>
-          <p>Michael Hall, UMW Chief of Police reminds us not to fly copters or planes between the columns of buildings.<br /><a href="#">Read more</a></p>
+          <p>Be sure to check out our amazing desserts section! Trust us you wont be dissapointed!<br /><a href="#">Read more</a></p>
           <h4>Reminder</h4>
           <h5>December 6th, 2015</h5>
-          <p>Access to our Educational Flight Range (EFR) is between 8am and 4pm ONLY!</p>
+          <p>Join our weekly newsletter! We'll keep you up to date on all stuff food!</p>
         </div>
       </div>
       
@@ -76,7 +114,7 @@
       </div>
     </div>
     <footer>
-      <p>Copyright &copy; CSS3_seascape_two | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>
+      <!--<p>Copyright &copy; CSS3_seascape_two | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>-->
     </footer>
   </div>
   <p>&nbsp;</p>
