@@ -119,15 +119,16 @@ def showPoduct():
   conn = connectToDB()
   cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
   try:
-    cur.execute("select artist, name, rank, released from albums")
+    cur.execute("select * from items where name = 'Seat'")
   except:
     print("Error executing select")
   results = cur.fetchall()
   print results
-  for r in results:
-    print r['artist']
-  return render_template('music3.html', albums=results)
-    
+  #for r in results:
+    #print r['artist']
+  return render_template('product.html', items=results)
+  
+  
 # start the server
 if __name__ == '__main__':
     #app.run(host='0.0.0.0', debug=True, port=12345, use_reloader=True)

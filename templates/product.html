@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% for item in items %}        
+    <h1>{{item.name}}</h1>
+    <p>What is it? <b>{{item.description}}</b></p>
+    <p>Other Guys Price: <b>{{item.retailprice}}</b></p>
+    <p>Our AWESOME Price!! <b>{{item.salesprice}}</b></p>
+{% endfor %}
+
+
+{% endblock %}
