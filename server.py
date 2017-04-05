@@ -1,134 +1,123 @@
 import psycopg2
 import psycopg2.extras
 import os
-from flask import Flask, render_template, request
-app = Flask(__name__)
+import sys
+import uuid
+import time
+from flask import Flask, render_template, request, redirect, url_for, session
+from flask_socketio import SocketIO, emit, send, join_room, leave_room
 
-planes = ['Easy Flyer', 'UMX Radian']
+from subprocess import call
+call(["sudo","service","postgresql","start"])
 
+app = Flask(__name__, static_url_path='')
+app.config['SECRET_KEY'] = 'secret!'
+app.secret_key = os.urandom(24).encode('hex')
 
-@app.route('/music')
-def showChart():
-  """rows returned from postgres are just an ordered list"""
-  
-  conn = connectToDB()
-  cur = conn.cursor()
-  try:
-    cur.execute("select artist, name from albums")
-  except:
-    print("Error executing select")
-  results = cur.fetchall()
-  return render_template('music.html', albums=results)
+socketio = SocketIO(app)
 
-@app.route('/music3', methods=['GET', 'POST'])
-def showChartForms():
-  """rows returned from postgres are a python dictionary (can
-  also be treated as an ordered list)"""
-  conn = connectToDB()
-  cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-  if request.method == 'POST':
-    # add new entry into database
-    try:
-      cur.execute("""INSERT INTO albums (artist, name, rank, released) 
-       VALUES (%s, %s, %s, %s);""",
-       (request.form['artist'], request.form['album'], request.form['rank'], request.form['released']) )
-    except:
-      print("ERROR inserting into albums")
-      print("Tried: INSERT INTO albums (artist, name, rank, released) VALUES ('%s', '%s', %s, %s);" %
-        (request.form['artist'], request.form['album'], request.form['rank'], request.form['released']) )
-      conn.rollback()
-    conn.commit()
+page = ""
 
-  try:
-    cur.execute("select artist, name, rank, released from albums")
-  except:
-    print("Error executing select")
-  results = cur.fetchall()
-  print results
-  for r in results:
-    print r['artist']
-  return render_template('music3.html', albums=results)
-
-    
-p2 = [{'person': 'Samantha Young', 'model': 'Pizza', 'time': '7pm', 'bday': '1990-07-20'},
-{'person': 'Elizabeth Simmons', 'model': 'Hamburger', 'time': '6pm', 'bday': '1985-06-19'},
-{'person': 'Glenn Taylor', 'model': 'Nachos', 'time': '7pm', 'bday': '1995-03-01'}]
-
-@app.route('/r2', methods=['GET', 'POST'])
-def regs():
-    if request.method == 'POST':
-        p2.append({'person': request.form['name'],
-                   'model': request.form['plane'],
-                   'time' : request.form['time'],
-                   'bday' : request.form['bday']})
-    return render_template('r2.html', selected='r2', planes=p2)
-                   
 @app.route('/')
 def mainIndex():
     
-    theSpotlight = "Shrimp Pasta"
-    isClass = True 
-    project = {'date': '14 February', 'time': '3pm', 'dish': 'Fish Tacos', 'cost': '$20'}
-    
-    videos =[{'title': 'Giadas Chicken Cacciatore Recipe', 'vidLink': 'tQlSchHlo48', 'description': 'Giada makes chicken cacciatore, a rustic poultry-vegetable hunters stew'},
-             {'title': 'Ultimate Super Bowl Sandwich', 'vidLink': '8unDwSlAJlQ', 'description': 'Epic Meal Time builds a Nacho Chicken Sandwich for Super Bowl'},
-             {'title': 'Chocolate Pizza', 'vidLink': 'rmeGntwt-c8', 'description': 'Food Network TV Dinner Ideas'},
-             {'title': 'Food Networks Chopped Kids', 'vidLink': 'pdUYl54CPSA', 'description': 'Chopped Kids Edition'}]
-             
-    return render_template('index.html', spotlight=theSpotlight, project=project, classC=isClass, posts=videos)
+    return render_template('index.html')
 
-@app.route('/breakfest')
-def breakfest():
-    return render_template('breakfest.html')
-
-@app.route('/lunch')
-def lunch():
-    return render_template('lunch.html')
     
-@app.route('/dinner')
-def dinner():
-    return render_template('dinner.html')
-    
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        planes.append(request.form['rcplane'])
-    return render_template('register.html', selected='register', planes=planes)
-   
-@app.route('/registration2', methods=['POST'])
-def reply():
-    theplane=request.form['rcplane']
-    return render_template('registration2.html', plane=theplane)
+@socketio.on('register', namespace='/bikeShop')
+def register(email, pw, cpw, fn, ln):
+  conn = connectToDB()
+  cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+  print("getting into socket")
+  if pw == cpw:
+    cur.execute("select * from users WHERE email = %s", (email,))
+    if cur.fetchone():
+      print "Account already registered to that name"
+      emit('registerfailure', "Email already registered!")
+      
+    else:
+      cur.execute("INSERT INTO users (email, password, firstname, lastname) VALUES(%s, crypt(%s, gen_salt('bf')), %s, %s);", (email, pw, fn, ln))
+      conn.commit()
+      
+  else:
+    emit('registerfailure', "Passwords don't match!")
   
   
 #######################################Finishedish stuff ################################
 def connectToDB():
 #  connectionString = 'dbname=music user=postgres password=PeekoT55! host=localhost'
-    connectionString = 'dbname=gustybikeshopdb user=gustyAdmin password=1234 host=localhost'
+    connectionString = 'dbname=bikesdb user=postgres password=1234 host=localhost'
     print (connectionString)
     try:
       return psycopg2.connect(connectionString)
     except:
       print("Can't connect to database")
       
-      
-@app.route('/showProduct', methods=['GET'])
-def showPoduct():
+   
+   
+@app.route('/news', methods=['GET'])
+def news():
+  
+  return render_template('news.html')
+  
+  
+  
+@app.route('/blog', methods=['GET'])
+def blog():
+  
+  return render_template('blog.html')
+  
+  
+
+@app.route('/contact', methods=['GET'])
+def contact():
+  
+  return render_template('contact.html')
+  
+  
+@app.route('/shop', methods=['GET'])
+def shop():
+  
+  return render_template('shop.html')  
+  
+  
+@app.route('/signup', methods=['GET','POST'])
+def signup():
+  
+  return render_template('signup.html')
+  
+  
+@app.route('/product', methods=['GET'])
+def product():
   """rows returned from postgres are a python dictionary (can
   also be treated as an ordered list)"""
   conn = connectToDB()
   cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
   try:
-    cur.execute("select * from items where name = 'Seat'")
+    cur.execute("select * from items where name = 'Seat';")
   except:
-    print("Error executing select")
+    print("Error executing select one product")
   results = cur.fetchall()
   print results
   #for r in results:
     #print r['artist']
   return render_template('product.html', items=results)
   
-  
+@app.route('/category/<inCategory>', methods=['GET'])
+def category(inCategory):
+    
+    conn = connectToDB()
+    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    print inCategory;
+    try:
+      cur.execute("""select (name, description, retailprice, salesprice) from items where category = 'parts';""")
+      results = cur.fetchall()
+
+      
+    except:
+      print("Error executing select category")
+    return render_template('category.html', items=results)
+
 # start the server
 if __name__ == '__main__':
     #app.run(host='0.0.0.0', debug=True, port=12345, use_reloader=True)

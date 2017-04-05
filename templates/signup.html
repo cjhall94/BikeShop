@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<p>
+    <form class="form" role="form" method="post" target="_self" ng-submit="register()" accept-charset="UTF-8" id="login-nav">
+		<div class="form-group">
+			<label class="sr-only" for="exampleInputEmail2"><b>Email address</b></label>&emsp;
+			<input type="email" class="form-control" id="email2" placeholder="Email Address" name="email" ng-model="remail" style="text-align:center">
+		</div>
+		<br />
+		<div class="form-group">
+			<label class="sr-only" for="exampleInputEmail2"><b>First Name</b></label>&emsp;
+			<input type="text" class="form-control" id="firstName" placeholder="First Name" name="firstName" ng-model="firstname" style="text-align:center">
+		</div>
+		<br />
+		<div class="form-group">
+			<label class="sr-only" for="exampleInputEmail2"><b>Last Name</b></label>&emsp;
+			<input type="text" class="form-control" id="lastName" placeholder="Last Name" name="lastName" ng-model="lastname" style="text-align:center">
+		</div>
+		<br />
+	    <div class="form-group">
+	    	<label class="sr-only" for="exampleInputPassword2"><b>Password</b></label>&emsp;
+	    	<input type="password" class="form-control" id="password2" name="password" placeholder="Password" ng-model="rpassword" style="text-align:center">
+	    </div>
+	    <br />
+	    <div class="form-group">
+	    	<label class="sr-only" for="exampleInputPassword2"><b>Confirm Password</b></label>&emsp;
+	    	<input type="password" class="form-control" id="confirmpassword2" name="confirmpassword" placeholder="Confirm Password" ng-model="cpassword" style="text-align:center">
+	    </div>
+	    <br />
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary btn-block" ng-disabled="!remail || !firstname || !lastname || !rpassword || !cpassword || rpassword != cpassword">Register</button>
+		</div>
+	</form>
+</p>
+
+{% endblock %}
