@@ -21,7 +21,7 @@ page = ""
 @app.route('/')
 def mainIndex():
     
-    return render_template('index.html')
+  return render_template('index.html')
 
     
 @socketio.on('register', namespace='/bikeShop')
@@ -41,6 +41,7 @@ def register(email, pw, cpw, fn, ln):
       
   else:
     emit('registerfailure', "Passwords don't match!")
+  
   
   
 #######################################Finishedish stuff ################################
