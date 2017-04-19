@@ -7,10 +7,10 @@ Gusty's BikeShop is a website designed for our client, Gusty Cooper, that may po
 For our purposes we ran the server created by the Cloud9 environment.
 Before getting started to access the site some libraries need to be installed. 
 Enter the following commands to install the libraries:
-   sudo easy_install flask markdown
-   sudo apt-get update
-   sudo apt-get install python-psycopg2
-   sudo easy_install flask-socketio
+   1. sudo easy_install flask markdown
+   2. sudo apt-get update
+   3. sudo apt-get install python-psycopg2
+   4. sudo easy_install flask-socketio
   
 Once that is completed the server.py file can be run with no problems and the website can be accessed.
 Any errors found or written code is always subject to change.
