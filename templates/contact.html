@@ -2,31 +2,22 @@
 
 {% block content %}
 <h1>Contact Us</h1>
-<!--
-    <h2>Current Attendence</h2>
 
-    <table> 
-    <tr><th>Person</th><th>Favorite Food</th><th>Time</th><th>Birthday</th></tr>
-    {% for plane in planes %}
-    
-    <tr><td>{{plane.person}}</td><td>{{plane.model}}</td><td>{{plane.time}}</td><td>{{plane.bday}}</td></tr>
-    {% endfor %}
-    
-    
-    </table>
+    <h2>Leave us your info and we'll get back to you!</h2>
 
-    <h2>Register</h2>
+    
+    <h2>Comments</h2>
     <form method="POST" action="/r2">
         <table>
-            <tr><td>Your Name</td><td><input type="text" name="name" /></td></tr>
-            <tr><td>Your Favorite Food</td><td><input type="text" name="plane" /></td></tr>
-            <tr><td>Your Birthday</td><td><input type="date" name="bday" /></td></tr>
-            <tr><td>Cooking Class Time</td>
+            <tr><td>Name</td><td><input type="text" name="name" /></td></tr>
+            <tr><td>Comment</td><td><input type="text" name="plane" /></td></tr>
+            <tr><td>Birthday</td><td><input type="date" name="bday" /></td></tr>
+            <tr><td>How did you hear about "Gusty's Bike Shop?"</td>
             <td><select name="time">
-                <option>6pm</option>
-                <option>7pm</option>
-                <option>8pm</option>
-                <option>9pm</option>
+                <option>Online</option>
+                <option>Books</option>
+                <option>Social Media</option>
+                <option>Other</option>
             </select></td>
             
             
@@ -36,5 +27,5 @@
 
     </form>
 
--->
+
 {% endblock %}

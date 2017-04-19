@@ -6,9 +6,9 @@
   <meta name="description" content="website description" />
   <meta name="keywords" content="website keywords, website keywords" />
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+  <link rel="stylesheet" type="text/css" href={{ url_for('static', filename ="css/style.css")}} />
   <!-- modernizr enables HTML5 elements and feature detects -->
-  <script type="text/javascript" src="static/js/modernizr-1.5.min.js"></script>
+  <script type="text/javascript" src={{ url_for('static', filename = "/js/modernizr-1.5.min.js")}}></script>
 </head>
 
 <body>
@@ -26,20 +26,20 @@
           <li><a href="/">Home</a></li>
           <li><a href="/news">What's New</a></li>
           <!--<li><a href="/lunch">Shop</a></li> -->
-          <li><a href="/shop">Shop</a>
+          <li><a href="/category/all">Shop</a>
             <ul>
               <li><a href="#">Biking</a>
                 <ul>
-                  <li><a href="#">Bikes</a></li>
-                  <li><a href="#">Helmets</a></li>
-                  <li><a href="#">Accessories</a></li>
-                  <li><a href="#">Parts</a></li>
-                  <li><a href="#">Car Racks</a></li>
+                  <li><a href="/category/bikes">Bikes</a></li>
+                  <li><a href="/category/helmets">Helmets</a></li>
+                  <li><a href="/category/accessories">Accessories</a></li>
+                  <li><a href="/category/parts">Parts</a></li>
+                  <li><a href="/category/car racks">Car Racks</a></li>
                 </ul>
               </li>
-              <li><a href="#">Apparel</a></li>
-              <li><a href="#">Buyer's Guide</a></li>
-              <li><a href="#">Clearance</a></li>
+              <li><a href="/category/apparel">Apparel</a></li>
+              <li><a href="/category/Buyer Guide">Buyer's Guide</a></li>
+              <li><a href="/category/clearance">Clearance</a></li>
               <!--<li><a href="#">Drop Down Five</a></li>-->
             </ul>
           <li><a href="/blog">Blog</a></li>
@@ -48,7 +48,7 @@
             <ul>
               <li id="one">
               <a>  
-							 <div class="row">
+							  <div class="row">
 									<div class="text-align: center">
 										 <form class="form" method="post" action="/login" accept-charset="UTF-8" id="login-nav">
 												<div class="form-group">
@@ -64,36 +64,47 @@
 												</div>
 										 </form>
 									</div>
+									<!--<form method="POST" action="/search">-->
 									<div class="bottom text-align: center">
 										<p style="color:black;"><a target="_self" id="regClick" href="/signup"><b>New Here? Sign Up</b></a></p>
 									</div>
-							 </div>
+							  </div>
 							</a>
 						  </li>
             </ul>
+            <li><a><div class="row">
+							<div class="8u 12u$(2)">
+								<form method="POST" action="/search">
+									<div class="row uniform 50%">
+										
+										<div class="12u$"><input type = "text" name="Search" id="message" placeholder="Testing Search Bar" ></textarea></div> 
+									</div> 
+								&nbsp;<br /> 
+								<ul class="actions"> 
+									<li><input type="submit" value="Find" /></li> 
+								</ul> 
+								</form> 
+							</div> 
+							<div class="4u$ 12u$(2)"></div> 
+						</div></a>
+            <!--<li><a href="/search" class="actions"><input type="submit" value="Enter"</a></li>-->
+            </li>
           </li>
-            <!--<ul>
-              <li><a href="#">Cakes</a></li>
-              <li><a href="#">Cookies</a>
-              </li>
-              <li><a href="#">Pies</a></li>
-              <li><a href="#">Icecream</a></li>
-              <li><a href="#">Candy</a></li>
-            </ul> -->
-          </li>
+          <li><a href="/cart">Cart</a></li>
         </ul>
       </nav>
     </header>
   <div id="site_content">
       <!--<ul id="images">
-        <li><img src="static/images/Bike1.jpg" width="600" height="300" alt="seascape_one" /></li>
-        <li><img src="static/images/Bike2.jpg" width="600" height="300" alt="seascape_two" /></li>
-        <li><img src="static/images/Bike3.jpg" width="600" height="300" alt="seascape_three" /></li>
-        <li><img src="static/images/Bike4.jpg" width="600" height="300" alt="seascape_four" /></li>
-        <li><img src="static/images/Bike5.jpg" width="600" height="300" alt="seascape_five" /></li>
-        <li><img src="static/images/Bike6.jpg" width="600" height="300" alt="seascape_seascape" /></li>
+        <li><img src="images/Bike1.jpg" width="600" height="300" alt="seascape_one" /></li>
+        <li><img src="images/Bike2.jpg" width="600" height="300" alt="seascape_two" /></li>
+        <li><img src="images/Bike3.jpg" width="600" height="300" alt="seascape_three" /></li>
+        <li><img src="images/Bike4.jpg" width="600" height="300" alt="seascape_four" /></li>
+        <li><img src="images/Bike5.jpg" width="600" height="300" alt="seascape_five" /></li>
+        <li><img src="images/Bike6.jpg" width="600" height="300" alt="seascape_seascape" /></li>
       </ul>-->
-       <div id="sidebar_container">
+      
+       <!--<div id="sidebar_container">
         <div class="sidebar">
           <h3>New Blog Post</h3>
           <h4>Remember Bike Safety</h4>
@@ -102,26 +113,31 @@
           <h4>Reminder</h4>
           <h5>December 6th, 2015</h5>
           <p>Join our weekly newsletter! We'll keep you up to date on all things biking!</p>
+          <p>Join our weekly newsletter! We'll keep you up to date on all things biking!</p>
         </div>
       </div>
       
       <div class="content">
+      -->
       
       {%block content %}{% endblock %}
-      
       </div>
-    </div>
+    </div>  
+    
     <footer>
-      <!--<p>Copyright &copy; CSS3_seascape_two | <a href="http://www.css3templates.co.uk">design from css3templates.co.uk</a></p>-->
+       <a>We will not sell, rent, or give out ANY information at any time.
+  Not all items listed in our catalog are in-stock items. Please <u></u><b><a href="/contact">notify us</a></b></u> of inaccurate/typo errors listed in our website.</a>
     </footer>
   </div>
   <p>&nbsp;</p>
+  
+  
   <!-- javascript at the bottom for fast page loading -->
 
-  <script type="text/javascript" src="static/js/jquery.js"></script>
-  <script type="text/javascript" src="static/js/jquery.easing-sooper.js"></script>
-  <script type="text/javascript" src="static/js/jquery.sooperfish.js"></script>
-  <script type="text/javascript" src="static/js/jquery.kwicks-1.5.1.js"></script>
+  <script type="text/javascript" src={{ url_for('static', filename = "/js/jquery.js")}}></script>
+  <script type="text/javascript" src={{ url_for('static', filename = "/js/jquery.easing-sooper.js")}}></script>
+  <script type="text/javascript" src={{ url_for('static', filename = "/js/jquery.sooperfish.js")}}></script>
+  <script type="text/javascript" src={{ url_for('static', filename = "/js/jquery.kwicks-1.5.1.js")}}></script>
   <script type="text/javascript">
     $(document).ready(function($) {
       $('#images').kwicks({
@@ -132,6 +148,7 @@
     
     });
   </script>
+  </div>
 </body>
 </html>
 

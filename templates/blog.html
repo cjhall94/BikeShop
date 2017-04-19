@@ -1,12 +1,14 @@
 {% extends "layout.html" %}
 
 {% block content %}
- <h1>Blog</h1>
- 
-        <!--<span class="center"><img src="static/images/dinner.jpg" width="420" /></span>
-        
-        <p>Dinner usually refers to the most significant and important meal of the day, which can be the noon or the evening meal.</p>
-        <p>However, the term "dinner" can have many different meanings depending on the culture; it may mean a meal of any size eaten at any time of day.</p>
--->
-        <p>Welcome to the Blog</p>
+<h2><b>Welcome to the Blog</b></h2>
+
+{% for blog in blogs %} 
+    <h1><b>{{blog['title']}}</b></h1>
+    <h3>Author: {{blog['author']}}</h3>
+    <h3>{{blog['blog']}}</h3>
+
+    
+{% endfor %}        
+
 {% endblock %}

@@ -1,15 +1,16 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<ul id="images">
-        <li><img src="static/images/Bike1.jpg" width="600" height="300" alt="seascape_one" /></li>
-        <li><img src="static/images/Bike2.jpg" width="600" height="300" alt="seascape_two" /></li>
-        <li><img src="static/images/Bike3.jpg" width="600" height="300" alt="seascape_three" /></li>
-        <li><img src="static/images/Bike4.jpg" width="600" height="300" alt="seascape_four" /></li>
-        <li><img src="static/images/Bike5.jpg" width="600" height="300" alt="seascape_five" /></li>
-        <li><img src="static/images/Bike6.jpg" width="600" height="300" alt="seascape_seascape" /></li>
-      </ul>
- <h1>Welcome to the Biking Community</h1>
-        <p>Thanks for visiting but this website is currently still in development!</p>
+    <h1>{{cat}}</h1>
+{% for item in items %} 
+    <div border-style: solid; border-width:thin; border-color: #FFFFFF;>
+    <h1><b>{{item['name']}}</b></h1>
+    <img src={{ url_for('static', filename = 'images/' )}}{{item['image']}}/>
+    <p>What is it? <b>{{item['description']}}</b></p>
+    <p>Other Guys Price: <b>{{item['retailprice']}}</b></p>
+    <p>Our AWESOME Price!! <b>{{item['salesprice']}}</b></p>
+    </div>
+    
+{% endfor %}        
 
 {% endblock %}
